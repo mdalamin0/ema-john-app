@@ -13,6 +13,7 @@ const Shop = () => {
             .then(data => setProducts(data))
     }, []);
 
+    let savedCart = [];
     useEffect(() => {
         const storedCart = getShoppingCart();
         // step 1: get id of the added product
@@ -22,11 +23,25 @@ const Shop = () => {
             if(addedProduct){
                 const quantity = storedCart[id]
                 addedProduct.quantity = quantity;
+                savedCart.push(addedProduct)
             }
         }
+        // set the cart
+        setCart(savedCart)
     }, [products])
     const handleAddToCart = (product) => {
-        const newCart = [...cart, product]
+        const newCart = [...cart, product];
+        // nicher ta aktu advanced cart a product details local storage theke set korar jonno
+        // let newCart = [];
+        // const exists = cart.find(pd => pd.id === product.id);
+        // if(!exists){
+        //     newCart = [...cart, product]
+        // }
+        // else{
+        //     exists.quantity = exists.quantity + 1;
+        //     const remaining = cart.filter(pd => pd.id !== product.id);
+        //     newCart = [...remaining, exists];
+        // }
         setCart(newCart)
         addToDb(product.id)
     }
