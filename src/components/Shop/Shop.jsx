@@ -16,7 +16,7 @@ const Shop = () => {
     let savedCart = [];
     useEffect(() => {
         const storedCart = getShoppingCart();
-        // step 1: get id of the added product
+        // step 1: get id of the added product...
         for(const id in storedCart){
             // step 2: get product from products state by using id
             const addedProduct = products.find(product => product.id === id);
@@ -45,6 +45,10 @@ const Shop = () => {
         setCart(newCart)
         addToDb(product.id)
     }
+    const removeCart = () => {
+        localStorage.removeItem('shopping-cart');
+        setCart(savedCart)
+    }
     return (
         <div className='shop-container'>
             <div className='products-container'>
@@ -53,7 +57,7 @@ const Shop = () => {
                 }
             </div>
             <div className='cart-container'>
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart} removeCart = {removeCart}></Cart>
             </div>
         </div>
     );
