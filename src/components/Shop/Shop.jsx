@@ -3,6 +3,9 @@ import { addToDb, getShoppingCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
+import { faArrowRight, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const [products, setProducts] = useState([])
@@ -17,10 +20,10 @@ const Shop = () => {
     useEffect(() => {
         const storedCart = getShoppingCart();
         // step 1: get id of the added product...
-        for(const id in storedCart){
+        for (const id in storedCart) {
             // step 2: get product from products state by using id
             const addedProduct = products.find(product => product.id === id);
-            if(addedProduct){
+            if (addedProduct) {
                 const quantity = storedCart[id]
                 addedProduct.quantity = quantity;
                 savedCart.push(addedProduct)
@@ -45,7 +48,7 @@ const Shop = () => {
         setCart(newCart)
         addToDb(product.id)
     }
-    const removeCart = () => {
+    const clearCart = () => {
         localStorage.removeItem('shopping-cart');
         setCart(savedCart)
     }
@@ -57,7 +60,11 @@ const Shop = () => {
                 }
             </div>
             <div className='cart-container'>
-                <Cart cart={cart} removeCart = {removeCart}></Cart>
+                <Cart cart={cart} clearCart={clearCart}>
+                    <Link className='review-link' to="/orders">
+                        <button className='review-btn'>Review Order <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></button>
+                    </Link>
+                </Cart>
             </div>
         </div>
     );
