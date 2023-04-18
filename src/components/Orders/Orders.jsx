@@ -17,7 +17,7 @@ const Orders = () => {
     }
     const clearCart = () => {
         setCart([]);
-        deleteShoppingCart()
+        deleteShoppingCart();
     }
 
     return (
