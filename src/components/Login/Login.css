@@ -87,3 +87,9 @@
 .forgot-btn{
     background-color: white;
 }
+.show-pass-btn{
+    cursor: pointer;
+}
+.show-pass-btn:hover{
+    text-decoration: underline;
+}

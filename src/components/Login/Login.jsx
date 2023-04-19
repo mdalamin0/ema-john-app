@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 
 const Login = () => {
     const { signInUser, signInWithGoogle } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const location = useLocation();
+    const [passwordType, setPasswordType] = useState('password');
+    const from = location.state?.from?.pathname || '/';
     const handleSignIn = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -15,6 +19,7 @@ const Login = () => {
                 const loggedUser = result.user;
                 alert('login success')
                 form.reset()
+                navigate(from, {replace: true})
             })
             .catch(error => {
                 alert(error.message)
@@ -32,6 +37,15 @@ const Login = () => {
                 alert(error.message)
             })
     }
+
+    const handleShowHidePass = () => {
+        if(passwordType === 'password'){
+            setPasswordType('text')
+        }
+        else if (passwordType === 'text'){
+            setPasswordType('password')
+        }
+    }
     return (
         <form onSubmit={handleSignIn} className='form-container'>
             <h4 className='form-title'>Login</h4>
@@ -41,8 +55,8 @@ const Login = () => {
             </div>
             <div className='form-control'>
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="" required />
-                <a href="#">Forgot password?</a>
+                <input type= {passwordType} name="password" id="" required />
+                <p onClick={handleShowHidePass} className='show-pass-btn'>{passwordType === 'password' ? <span>show password</span> : 'hide password'}</p>
             </div>
             <input className='btn-submit' type="submit" value="Login" />
 
