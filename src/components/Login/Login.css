@@ -78,6 +78,7 @@
     color: #2A414F;
     font-size: 17px;
     margin-top: 79px;
+    cursor: pointer;
 }
 .google-btn img{
     width: 20px;

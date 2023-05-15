@@ -63,7 +63,7 @@ const Login = () => {
             <p className='new-account-link'>New to Ema-john? <Link to='/sign-up'>  <span className='link'>Create New Account</span></Link></p>
 
             <div className=" google-btn-container">
-                <button onClick={handleSignInWithGoogle} className="google-btn "> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" /> Continue with Google</button>
+                <p onClick={handleSignInWithGoogle} className="google-btn "> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" /> Continue with Google</p>
             </div>
         </form>
     );

@@ -59,8 +59,8 @@ const SignUp = () => {
             <input className='btn-submit' type="submit" value="Sign Up" />
             <p className='new-account-link'>Already have an account?  <Link to='/login'>  <span className='link'>Login</span></Link></p>
 
-            <div className=" google-btn-container">
-                <button onClick={handleSignUpWithGoogle} className="google-btn "> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" /> Continue with Google</button>
+            <div className="google-btn-container">
+                <p onClick={handleSignUpWithGoogle} className="google-btn "> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" /> Continue with Google</p>
             </div>
         </form>
     );
