@@ -3,7 +3,7 @@ import Cart from '../Cart/Cart';
 import { Link, useLoaderData } from 'react-router-dom';
 import ReviewItems from '../ReviewItems/ReviewItems';
 import './Orders.css'
-import { faArrowRight, faCreditCard} from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteShoppingCart, removeFromDb } from '../../utilities/fakedb';
 
@@ -11,7 +11,7 @@ const Orders = () => {
     const savedCart = useLoaderData();
     const [cart, setCart] = useState(savedCart);
     const handleRemoveFromCart = (id) => {
-        const remaining = cart.filter(product => product.id !== id);
+        const remaining = cart.filter(product => product._id !== id);
         setCart(remaining);
         removeFromDb(id);
     }
@@ -24,7 +24,7 @@ const Orders = () => {
         <div className='shop-container'>
             <div className='review-container'>
                 {
-                    cart.map(product => <ReviewItems key={product.id} product={product} handleRemoveFromCart={handleRemoveFromCart}></ReviewItems>)
+                    cart.map(product => <ReviewItems key={product._id} product={product} handleRemoveFromCart={handleRemoveFromCart}></ReviewItems>)
                 }
             </div>
             <div className='cart-container'>
